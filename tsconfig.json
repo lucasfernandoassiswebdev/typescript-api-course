@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "outDir": "build",//pasta para onde o código gerado é enviado
+        "typeRoots": [//raiz dos tipos
+            "./node_modules/@types"
+        ],
+        "types": [
+            "node"
+        ]
+    },
+    "include": [
+        "server/**/*.ts",//qualquer arquivo.ts dentro de qualquer diretório dentro de server
+        "server/*.ts"//qualquer arquivo .ts dentro de server
+    ],
+    "exclude": [
+        "node_modules"
+    ],    
+    "buildOnSave": true,
+    "compileOnSave": true
+}
