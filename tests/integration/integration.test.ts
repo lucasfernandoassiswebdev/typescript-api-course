@@ -32,6 +32,7 @@ describe('Testes de Integração', () => {
                 .get('/api/users/all')
                 .end((error, res) => {
                     expect(res.status).to.equal(200);
+                    done(error);
                 });
         });
     });
@@ -42,46 +43,50 @@ describe('Testes de Integração', () => {
                 .get(`/api/users/${1}`) //id qualquer
                 .end((error, res) => {
                     expect(res.status).to.equal(200);
+                    done(error);
                 });
         });
     });
 
-    describe(('POST /api/users/new'), () => {
+    describe(('POST /api/users/create'), () => {
         it('Deve cadastrar um novo usuário', done => {
             const user = {
                 nome: 'Teste'
             }
 
             request(app)
-                .post('/api/users/new') //id qualquer
+                .post('/api/users/create')
                 .send(user)//corpo da requisição
                 .end((error, res) => {
                     expect(res.status).to.equal(200);
+                    done(error);
                 });
         });
     });
 
-    describe(('PUT /api/users/:id/edit'), () => {
+    describe(('PUT /api/users/:id/update'), () => {
         it('Deve atualizar os dados de um usuário', done => {
             const user = {
                 nome: 'TesteUpdate'
             }
 
             request(app)
-                .put(`/api/users/${1}/edit`)
+                .put(`/api/users/${1}/update`)
                 .send(user)//corpo da requisição
                 .end((error, res) => {
                     expect(res.status).to.equal(200);
+                    done(error);
                 });
         });
     });
 
-    describe(('DELETE /api/users/:id'), () => {
+    describe(('DELETE /api/users/:id/destroy'), () => {
         it('Deve deletar um usuário', done => {
             request(app)
-                .delete(`/api/users/${1}`)
+                .delete(`/api/users/${1}/destroy`)
                 .end((error, res) => {
                     expect(res.status).to.equal(200);
+                    done(error);
                 });
         });
     });
