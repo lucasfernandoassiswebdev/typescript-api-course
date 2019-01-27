@@ -1,3 +1,4 @@
+import * as HTTPStatus from 'http-status';
 import { app, request, expect } from './config/helpers';
 
 describe('Testes de Integração', () => {
@@ -6,7 +7,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .get('/')
                 .end((error, res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.status).to.equal(HTTPStatus.OK);
                     expect(res.text).to.be.eql('Hello, world!');
                     done(error);
                 })
@@ -19,7 +20,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .get(`/ola/${nome}`)
                 .end((error, res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.status).to.equal(HTTPStatus.OK);
                     expect(res.text).to.be.eql('Hello, Typescript Course!');
                     done(error);
                 })
@@ -31,7 +32,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .get('/api/users/all')
                 .end((error, res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.status).to.equal(HTTPStatus.OK);
                     done(error);
                 });
         });
@@ -42,7 +43,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .get(`/api/users/${1}`) //id qualquer
                 .end((error, res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.status).to.equal(HTTPStatus.OK);
                     done(error);
                 });
         });
@@ -58,7 +59,7 @@ describe('Testes de Integração', () => {
                 .post('/api/users/create')
                 .send(user)//corpo da requisição
                 .end((error, res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.status).to.equal(HTTPStatus.OK);
                     done(error);
                 });
         });
@@ -74,7 +75,7 @@ describe('Testes de Integração', () => {
                 .put(`/api/users/${1}/update`)
                 .send(user)//corpo da requisição
                 .end((error, res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.status).to.equal(HTTPStatus.OK);
                     done(error);
                 });
         });
@@ -85,7 +86,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .delete(`/api/users/${1}/destroy`)
                 .end((error, res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.status).to.equal(HTTPStatus.OK);
                     done(error);
                 });
         });
