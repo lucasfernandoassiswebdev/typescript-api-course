@@ -12,7 +12,8 @@
     },
     "include": [
         "server/**/*.ts",//qualquer arquivo.ts dentro de qualquer diretório dentro de server
-        "server/*.ts"//qualquer arquivo .ts dentro de server
+        "server/*.ts",//qualquer arquivo .ts dentro de server
+        "tests/**/*.ts"
     ],
     "exclude": [
         "node_modules"
