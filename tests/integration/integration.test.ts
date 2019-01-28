@@ -40,7 +40,7 @@ describe('Testes de Integração', () => {
             });
     });
 
-    /*
+
     describe('GET /', () => {
         it('Deve retornar a mensagem Hello World', done => {
             request(app)
@@ -65,8 +65,7 @@ describe('Testes de Integração', () => {
                 })
         });
     });
-    */
-
+    
     describe(('GET /api/users/all'), () => {
         it('Deve retornar um Array com todos os usuários', done => {
             request(app)

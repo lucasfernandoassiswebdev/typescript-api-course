@@ -36,32 +36,29 @@ describe('Testes de Integração', function () {
             });
         });
     });
-    /*
-    describe('GET /', () => {
-        it('Deve retornar a mensagem Hello World', done => {
-            request(app)
+    describe('GET /', function () {
+        it('Deve retornar a mensagem Hello World', function (done) {
+            helpers_1.request(helpers_1.app)
                 .get('/')
-                .end((error, res) => {
-                    expect(res.status).to.equal(HTTPStatus.OK);
-                    expect(res.text).to.be.eql('Hello, world!');
-                    done(error);
-                })
+                .end(function (error, res) {
+                helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
+                helpers_1.expect(res.text).to.be.eql('Hello, world!');
+                done(error);
+            });
         });
     });
-
-    describe('GET /ola:nome', () => {
-        it('Deve retornar a mensagem Hello Typescript Course', done => {
-            const nome = "Typescript Course";
-            request(app)
-                .get(`/ola/${nome}`)
-                .end((error, res) => {
-                    expect(res.status).to.equal(HTTPStatus.OK);
-                    expect(res.text).to.be.eql('Hello, Typescript Course!');
-                    done(error);
-                })
+    describe('GET /ola:nome', function () {
+        it('Deve retornar a mensagem Hello Typescript Course', function (done) {
+            var nome = "Typescript Course";
+            helpers_1.request(helpers_1.app)
+                .get("/ola/" + nome)
+                .end(function (error, res) {
+                helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
+                helpers_1.expect(res.text).to.be.eql('Hello, Typescript Course!');
+                done(error);
+            });
         });
     });
-    */
     describe(('GET /api/users/all'), function () {
         it('Deve retornar um Array com todos os usuários', function (done) {
             helpers_1.request(helpers_1.app)
