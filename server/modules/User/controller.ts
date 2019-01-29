@@ -47,7 +47,7 @@ class UserController {
     deleteUser(req: Request, res: Response) {
         this.UserService.delete(parseInt(req.params.id)).then(data => {
             res.status(HTTPStatus.OK).json({ payload: data });
-        }).catch(err => {
+        }).catch(err => { 
             res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({ payload: 'Erro ao excluir usuário' });
         });
     }

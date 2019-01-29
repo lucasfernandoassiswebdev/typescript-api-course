@@ -101,9 +101,9 @@ describe('Testes de Integração', () => {
         it('Deve cadastrar um novo usuário', done => {
             const user = {
                 id: 2,
-                name: 'Usuário Teste',
-                email: 'usuario@email.com',
-                password: 'novouser'
+                name: 'Lucas',
+                email: 'lucas@email.com',
+                password: '567'
             };
 
             request(app)

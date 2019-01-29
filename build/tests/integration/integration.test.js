@@ -92,9 +92,9 @@ describe('Testes de Integração', function () {
         it('Deve cadastrar um novo usuário', function (done) {
             var user = {
                 id: 2,
-                name: 'Usuário Teste',
-                email: 'usuario@email.com',
-                password: 'novouser'
+                name: 'Lucas',
+                email: 'lucas@email.com',
+                password: '567'
             };
             helpers_1.request(helpers_1.app)
                 .post('/api/users/create')
