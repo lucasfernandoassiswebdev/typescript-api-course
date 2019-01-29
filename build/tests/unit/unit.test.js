@@ -2,11 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var helpers_1 = require("./config/helpers");
 var service_1 = require("../../server/modules/User/service");
+var model = require('../../server/models');
 describe('Testes Unitários do Controller', function () {
+    var defaultUser = {
+        id: 1,
+        name: 'Default User',
+        email: 'defaultuser@email.com',
+        password: '1234'
+    };
+    beforeEach(function (done) {
+        model.User.destroy({
+            where: {}
+        })
+            .then(function () {
+            model.User.create(defaultUser).then(function () {
+                console.log("Default User created");
+                done();
+            });
+        });
+    });
     describe('Método create', function () {
         it('Deve criar um novo usuário', function () {
             var novoUsuario = {
-                id: 1,
+                id: 2,
                 name: 'Novo Usuário',
                 email: 'novousuario@gmail.com',
                 password: '1234'
@@ -21,6 +39,15 @@ describe('Testes Unitários do Controller', function () {
     });
     describe('Método Update', function () {
         it('Deve atualizar um usuáruo', function () {
+            var usuarioAtualizado = {
+                name: 'Nome Atualizado',
+                email: 'atualizado@email.com'
+            };
+            var user = new service_1.default();
+            return user.update(1, usuarioAtualizado) //1 = id do único usuário na base 
+                .then(function (data) {
+                helpers_1.expect(data[0]).to.be.equal(1); //1 = quantos registros foram atualizados   
+            });
         });
     });
     describe('Método GET Users', function () {
@@ -35,6 +62,10 @@ describe('Testes Unitários do Controller', function () {
     });
     describe('Método Delete', function () {
         it('Deve deletar um usuário', function () {
+            var user = new service_1.default();
+            return user.delete(1).then(function (data) {
+                helpers_1.expect(data).to.be.equal(1);
+            });
         });
     });
 });

@@ -1,11 +1,31 @@
 import { testDouble, expect } from './config/helpers';
 import User from '../../server/modules/User/service';
+const model = require('../../server/models');
 
 describe('Testes Unitários do Controller', () => {
+    const defaultUser = {
+        id: 1,
+        name: 'Default User',
+        email: 'defaultuser@email.com',
+        password: '1234'
+    }
+
+    beforeEach((done) => {
+        model.User.destroy({
+            where: {}
+        })
+            .then(() => {
+                model.User.create(defaultUser).then(() => {
+                    console.log(`Default User created`)
+                    done();
+                });
+            })
+    });
+
     describe('Método create', () => {
         it('Deve criar um novo usuário', () => {
             const novoUsuario = {
-                id: 1,
+                id: 2,
                 name: 'Novo Usuário',
                 email: 'novousuario@gmail.com',
                 password: '1234'
@@ -22,7 +42,15 @@ describe('Testes Unitários do Controller', () => {
 
     describe('Método Update', () => {
         it('Deve atualizar um usuáruo', () => {
-
+            const usuarioAtualizado = {
+                name: 'Nome Atualizado',
+                email: 'atualizado@email.com'
+            };
+            const user = new User();
+            return user.update(1, usuarioAtualizado)//1 = id do único usuário na base 
+                .then(data => {
+                    expect(data[0]).to.be.equal(1); //1 = quantos registros foram atualizados   
+                });
         });
     });
 
@@ -39,7 +67,10 @@ describe('Testes Unitários do Controller', () => {
 
     describe('Método Delete', () => {
         it('Deve deletar um usuário', () => {
-
+            const user = new User();
+            return user.delete(1).then(data => {
+                expect(data).to.be.equal(1);
+            });
         });
     });
 });
