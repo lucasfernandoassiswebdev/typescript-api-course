@@ -65,6 +65,26 @@ describe('Testes Unitários do Controller', () => {
         });
     });
 
+    describe('Método GetById', () => {
+        it('Deve retornar o usuário do id especificado', () => {
+            const user = new User();
+            return user.getById(1).then(data => {
+                expect(data).property('id').to.be.equal(1);
+                expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
+            });
+        });
+    });
+
+    describe('Método GetByEmail', () => {
+        it('Deve retornar o usuário do email especificado', () => {
+            const user = new User();
+            return user.getByEmail('defaultuser@email.com').then(data => {
+                expect(data).property('id').to.be.equal(1);
+                expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
+            });
+        });
+    });
+
     describe('Método Delete', () => {
         it('Deve deletar um usuário', () => {
             const user = new User();

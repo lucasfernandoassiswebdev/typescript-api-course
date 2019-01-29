@@ -60,6 +60,24 @@ describe('Testes Unitários do Controller', function () {
             });
         });
     });
+    describe('Método GetById', function () {
+        it('Deve retornar o usuário do id especificado', function () {
+            var user = new service_1.default();
+            return user.getById(1).then(function (data) {
+                helpers_1.expect(data).property('id').to.be.equal(1);
+                helpers_1.expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
+            });
+        });
+    });
+    describe('Método GetByEmail', function () {
+        it('Deve retornar o usuário do email especificado', function () {
+            var user = new service_1.default();
+            return user.getByEmail('defaultuser@email.com').then(function (data) {
+                helpers_1.expect(data).property('id').to.be.equal(1);
+                helpers_1.expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
+            });
+        });
+    });
     describe('Método Delete', function () {
         it('Deve deletar um usuário', function () {
             var user = new service_1.default();
