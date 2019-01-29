@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
+        "lib": ["es5", "es6", "dom"],
         "module": "commonjs",
         "outDir": "build",//pasta para onde o código gerado é enviado
         "typeRoots": [//raiz dos tipos
