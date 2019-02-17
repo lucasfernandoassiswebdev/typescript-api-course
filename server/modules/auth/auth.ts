@@ -22,4 +22,4 @@ class TokenRoutes {
     };
 }
 
-export default TokenRoutes;
+export default new TokenRoutes();
