@@ -1,0 +1,23 @@
+sudo: required
+language: node_js
+notifications: 
+  email: lucasaassis@outlook.com
+node_js: 
+- 10.2.1
+services: 
+- postgresql
+env:
+  global:
+  - NODE_ENV: test
+  - TRAVIS: true
+addons: 
+  postgresql: '9.3'    
+before_script: 
+- psql -c 'create database ts_api_test; -U postgres'
+- npm i -g sequelize-cli gulp-cli
+- cd server/
+- npm install
+- gulp
+script:
+- npm run unit-test
+- npm run integration-test
