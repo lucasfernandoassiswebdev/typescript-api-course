@@ -3,8 +3,8 @@
         "target": "es5",
         "lib": ["es5", "es6", "dom"],
         "module": "commonjs",
-        "outDir": "build",//pasta para onde o código gerado é enviado
-        "typeRoots": [//raiz dos tipos
+        "outDir": "dist", //pasta para onde o código gerado é enviado(dist = distribuição)
+        "typeRoots": [ //raiz dos tipos
             "./node_modules/@types"
         ],
         "types": [
@@ -12,13 +12,14 @@
         ]
     },
     "include": [
-        "server/**/*.ts",//qualquer arquivo.ts dentro de qualquer diretório dentro de server
-        "server/*.ts",//qualquer arquivo .ts dentro de server
+        "server/**/*.ts", //qualquer arquivo.ts dentro de qualquer diretório dentro de server
+        "server/*.ts", //qualquer arquivo .ts dentro de server
         "tests/**/*.ts",
-        "config/**/*.ts"
+        "config/**/*.ts",
+        "tests/**/*.ts",
     ],
     "exclude": [
-        "node_modules"
+        "./node_modules"
     ],    
     "buildOnSave": true,
     "compileOnSave": true
