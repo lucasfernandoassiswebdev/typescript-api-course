@@ -177,8 +177,7 @@ describe('Testes de Integração', () => {
                 .set('Authorization', `jwt ${token}`)
                 .send(user)
                 .end((error, res) => {
-                    expect(res.status).to.equal(HTTPStatus.OK);
-                    expect(res.body.payload.length).to.equal(1);
+                    expect(res.status).to.equal(HTTPStatus.OK);                    
                     done(error);
                 });
         });

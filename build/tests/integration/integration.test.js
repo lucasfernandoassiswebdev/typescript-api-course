@@ -161,7 +161,6 @@ describe('Testes de Integração', function () {
                 .send(user)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
-                helpers_1.expect(res.body.payload.length).to.equal(1);
                 done(error);
             });
         });

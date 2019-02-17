@@ -21,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/typescript": "^2.0.0",
+    "bcrypt": "^3.0.4",
     "bluebird": "^3.5.3",
     "body-parser": "^1.17.1",
     "cross-env": "^5.2.0",
@@ -36,6 +37,7 @@
     "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/bluebird": "^3.5.5",
     "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.7",
