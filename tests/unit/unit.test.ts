@@ -1,8 +1,9 @@
-import { testDouble, expect } from './config/helpers';
+import { expect } from './config/helpers';
 import User from '../../server/modules/User/service';
 const model = require('../../server/models');
 
-describe('Testes Unitários do Controller', () => {
+describe('Testes Unitários do Service', () => {
+
     const defaultUser = {
         id: 1,
         name: 'Default User',
@@ -10,16 +11,15 @@ describe('Testes Unitários do Controller', () => {
         password: '1234'
     }
 
-    beforeEach((done) => {
+    before(function (done) {
         model.User.destroy({
             where: {}
-        })
-            .then(() => {
-                model.User.create(defaultUser).then(() => {
-                    console.log(`Default User created`)
-                    done();
-                });
-            })
+        }).then(() => {
+            model.User.create(defaultUser).then(() => {
+                console.log('Default User created');
+                done();
+            });
+        });
     });
 
     describe('Método create', () => {
@@ -46,7 +46,7 @@ describe('Testes Unitários do Controller', () => {
                 email: 'atualizado@email.com'
             };
 
-            return User.update(1, usuarioAtualizado)//1 = id do único usuário na base 
+            return User.update(defaultUser.id, usuarioAtualizado)
                 .then(data => {
                     expect(data[0]).to.be.equal(1); //1 = quantos registros foram atualizados   
                 });
@@ -57,16 +57,14 @@ describe('Testes Unitários do Controller', () => {
         it('Deve retornar uma lista com todos os usuários', () => {
             return User.getAll().then(data => {
                 expect(data).to.be.an('array');
-                //no resultado da consulta apenas estes campos são devolvidos
-                expect(data[0]).to.have.all.keys(['email', 'id', 'name', 'password']);
             });
         });
     });
 
     describe('Método GetById', () => {
         it('Deve retornar o usuário do id especificado', () => {
-            return User.getById(1).then(data => {
-                expect(data).property('id').to.be.equal(1);
+            return User.getById(defaultUser.id).then(data => {
+                expect(data).property('id').to.be.equal(defaultUser.id);
                 expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
             });
         });
@@ -74,8 +72,8 @@ describe('Testes Unitários do Controller', () => {
 
     describe('Método GetByEmail', () => {
         it('Deve retornar o usuário do email especificado', () => {
-            return User.getByEmail('defaultuser@email.com').then(data => {
-                expect(data).property('id').to.be.equal(1);
+            return User.getByEmail(defaultUser.email).then(data => {
+                expect(data).property('id').to.be.equal(defaultUser.id);
                 expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
             });
         });
@@ -83,7 +81,7 @@ describe('Testes Unitários do Controller', () => {
 
     describe('Método Delete', () => {
         it('Deve deletar um usuário', () => {
-            return User.delete(1).then(data => {
+            return User.delete(defaultUser.id).then(data => {
                 expect(data).to.be.equal(1);
             });
         });

@@ -19,6 +19,12 @@ class UserController {
             .catch(_.partial(Handlers.onError, res, 'Erro ao buscar usuário'));
     }
 
+    getByEmail(req: Request, res: Response) {
+        User.getByEmail(req.params.email)
+            .then(_.partial(Handlers.onSuccess, res))
+            .catch(_.partial(Handlers.onError, res, 'Erro ao buscar usuário'));
+    }
+
     createUser(req: Request, res: Response) {
         User.create(req.body)
             .then(_.partial(Handlers.onSuccess, res))

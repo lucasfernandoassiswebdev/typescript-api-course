@@ -16,6 +16,11 @@ var UserController = /** @class */ (function () {
             .then(_.partial(handlers_1.default.onSuccess, res))
             .catch(_.partial(handlers_1.default.onError, res, 'Erro ao buscar usuário'));
     };
+    UserController.prototype.getByEmail = function (req, res) {
+        service_1.default.getByEmail(req.params.email)
+            .then(_.partial(handlers_1.default.onSuccess, res))
+            .catch(_.partial(handlers_1.default.onError, res, 'Erro ao buscar usuário'));
+    };
     UserController.prototype.createUser = function (req, res) {
         service_1.default.create(req.body)
             .then(_.partial(handlers_1.default.onSuccess, res))
