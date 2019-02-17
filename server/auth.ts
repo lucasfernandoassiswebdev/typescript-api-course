@@ -8,13 +8,13 @@ export default function authConfig() {
     const UserService = new User();
     let opts = {
         secretOrKey: config.secret,
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+        jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt')
     };
 
     passport.use(new Strategy(opts, (jwtPayload, done) => {
         UserService.getById(jwtPayload.id).then(user => {
             if (user) {
-                done(null, {
+                return done(null, {
                     id: user.id,
                     email: user.email
                 });
@@ -31,7 +31,7 @@ export default function authConfig() {
             return passport.initialize();
         },
         authenticate: () => {
-            return passport.authenticate('Bearer', { session: false });
+            return passport.authenticate('jwt', { session: false });
         }
     }
 }

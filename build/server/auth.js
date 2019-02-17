@@ -8,12 +8,12 @@ function authConfig() {
     var UserService = new service_1.default();
     var opts = {
         secretOrKey: config.secret,
-        jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken()
+        jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderWithScheme('jwt')
     };
     passport.use(new passport_jwt_1.Strategy(opts, function (jwtPayload, done) {
         UserService.getById(jwtPayload.id).then(function (user) {
             if (user) {
-                done(null, {
+                return done(null, {
                     id: user.id,
                     email: user.email
                 });
@@ -28,7 +28,7 @@ function authConfig() {
             return passport.initialize();
         },
         authenticate: function () {
-            return passport.authenticate('Bearer', { session: false });
+            return passport.authenticate('jwt', { session: false });
         }
     };
 }

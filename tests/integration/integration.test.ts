@@ -107,7 +107,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .get('/api/users/all')
                 .set('Content-Type', 'application/json')
-                .set('Authorization', `Bearer ${token}`)
+                .set('Authorization', `jwt ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
                     expect(res.body.payload).to.be.an('array');
@@ -123,7 +123,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .get(`/api/users/${userDefault.id}`)
                 .set('Content-Type', 'application/json')
-                .set('Authorization', `Bearer ${token}`)
+                .set('Authorization', `jwt ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
                     expect(res.body.payload.id).to.equal(userDefault.id);
@@ -148,7 +148,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .post('/api/users/create')
                 .set('Content-Type', 'application/json')
-                .set('Authorization', `Bearer ${token}`)
+                .set('Authorization', `jwt ${token}`)
                 .send(user) //corpo da requisição
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
@@ -174,7 +174,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .put(`/api/users/${userTest.id}/update`)
                 .set('Content-Type', 'application/json')
-                .set('Authorization', `Bearer ${token}`)
+                .set('Authorization', `jwt ${token}`)
                 .send(user)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
@@ -189,7 +189,7 @@ describe('Testes de Integração', () => {
             request(app)
                 .delete(`/api/users/${userTest.id}/destroy`)
                 .set('Content-Type', 'application/json')
-                .set('Authorization', `Bearer ${token}`)
+                .set('Authorization', `jwt ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK);
                     done(error);

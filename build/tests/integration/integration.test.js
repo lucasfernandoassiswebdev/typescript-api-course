@@ -96,7 +96,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .get('/api/users/all')
                 .set('Content-Type', 'application/json')
-                .set('Authorization', "Bearer " + token)
+                .set('Authorization', "jwt " + token)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
                 helpers_1.expect(res.body.payload).to.be.an('array');
@@ -111,7 +111,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .get("/api/users/" + userDefault.id)
                 .set('Content-Type', 'application/json')
-                .set('Authorization', "Bearer " + token)
+                .set('Authorization', "jwt " + token)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
                 helpers_1.expect(res.body.payload.id).to.equal(userDefault.id);
@@ -134,7 +134,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .post('/api/users/create')
                 .set('Content-Type', 'application/json')
-                .set('Authorization', "Bearer " + token)
+                .set('Authorization', "jwt " + token)
                 .send(user) //corpo da requisição
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
@@ -157,7 +157,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .put("/api/users/" + userTest.id + "/update")
                 .set('Content-Type', 'application/json')
-                .set('Authorization', "Bearer " + token)
+                .set('Authorization', "jwt " + token)
                 .send(user)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
@@ -171,7 +171,7 @@ describe('Testes de Integração', function () {
             helpers_1.request(helpers_1.app)
                 .delete("/api/users/" + userTest.id + "/destroy")
                 .set('Content-Type', 'application/json')
-                .set('Authorization', "Bearer " + token)
+                .set('Authorization', "jwt " + token)
                 .end(function (error, res) {
                 helpers_1.expect(res.status).to.equal(HTTPStatus.OK);
                 done(error);
