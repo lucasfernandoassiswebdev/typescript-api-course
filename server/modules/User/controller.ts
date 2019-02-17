@@ -1,4 +1,3 @@
-import * as HTTPStatus from 'http-status';
 import { Request, Response } from 'express';
 import * as _ from 'lodash';
 import Handlers from '../../api/responses/handlers';
@@ -42,4 +41,4 @@ class UserController {
     }
 }
 
-export default UserController;
+export default new UserController();
