@@ -8,9 +8,7 @@ class User implements IUser {
     public email: string;
     public password: string;
 
-    constructor() {
-
-    }
+    constructor() { }
 
     create(user: any) {
         return model.User.create(user);
@@ -50,4 +48,4 @@ class User implements IUser {
     }
 }
 
-export default User;
+export default new User();

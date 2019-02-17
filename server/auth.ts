@@ -6,16 +6,14 @@ const config = require('./config/env/config')();
 
 class Auth {
 
-    config() {
-        const UserService = new User();
-
+    config() {        
         let opts = {
             secretOrKey: config.secret,
             jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt')
         };
 
         passport.use(new Strategy(opts, (jwtPayload, done) => {
-            UserService.getById(jwtPayload.id).then(user => {
+            User.getById(jwtPayload.id).then(user => {
                 if (user) {
                     return done(null, {
                         id: user.id,
