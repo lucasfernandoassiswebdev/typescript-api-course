@@ -64,8 +64,8 @@ describe('Testes Unitários do Service', function () {
     });
     describe('Método GetByEmail', function () {
         it('Deve retornar o usuário do email especificado', function () {
-            return service_1.default.getByEmail(defaultUser.email).then(function (data) {
-                helpers_1.expect(data).property('id').to.be.equal(defaultUser.id);
+            return service_1.default.getByEmail('novousuario@gmail.com').then(function (data) {
+                helpers_1.expect(data).property('id').to.be.equal(2);
                 helpers_1.expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
             });
         });

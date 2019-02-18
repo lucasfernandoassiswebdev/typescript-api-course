@@ -72,8 +72,8 @@ describe('Testes Unitários do Service', () => {
 
     describe('Método GetByEmail', () => {
         it('Deve retornar o usuário do email especificado', () => {
-            return User.getByEmail(defaultUser.email).then(data => {
-                expect(data).property('id').to.be.equal(defaultUser.id);
+            return User.getByEmail('novousuario@gmail.com').then(data => {
+                expect(data).property('id').to.be.equal(2);
                 expect(data).to.have.all.keys(['email', 'id', 'name', 'password']);
             });
         });
