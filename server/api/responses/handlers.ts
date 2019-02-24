@@ -11,7 +11,7 @@ class Handlers {
     }
 
     authSuccess(res: Response, credentials: any, data: any) {
-        const isMatch = bcrypt.compareSync(credentials.password, data.password); //verifica se os hash's dos passwords batem
+        const isMatch = bcrypt.compareSync(credentials.password, data.password); //verifica se os hash's dos passwords batem       
 
         if (isMatch) {
             const payload = { id: data.id };

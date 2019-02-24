@@ -10,13 +10,15 @@ var Author = /** @class */ (function () {
     };
     Author.prototype.getAll = function () {
         return model.Author.findAll({
-            order: ['name']
+            order: ['name'],
+            include: [{ model: model.Post }]
         }).then(interface_1.createAuthors);
     };
     Author.prototype.getById = function (id) {
         return model.Author.findOne({
             where: { id: id },
-            order: ['name']
+            order: ['name'],
+            include: [{ model: model.Post }]
         }).then(interface_1.createAuthor);
     };
     Author.prototype.update = function (id, author) {

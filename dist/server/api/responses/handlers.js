@@ -11,7 +11,7 @@ var Handlers = /** @class */ (function () {
         res.sendStatus(HttpStatus.UNAUTHORIZED);
     };
     Handlers.prototype.authSuccess = function (res, credentials, data) {
-        var isMatch = bcrypt.compareSync(credentials.password, data.password); //verifica se os hash's dos passwords batem
+        var isMatch = bcrypt.compareSync(credentials.password, data.password); //verifica se os hash's dos passwords batem       
         if (isMatch) {
             var payload = { id: data.id };
             res.json({

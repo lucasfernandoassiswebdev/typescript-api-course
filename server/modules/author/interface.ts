@@ -1,11 +1,14 @@
+import { IPost } from '../posts/interface';
+
 export interface IAuthor {
     id: number,
-    name: string
+    name: string,
+    Posts?: IPost[]
 }
 
-export function createAuthor({ id, name }: any): IAuthor {
+export function createAuthor({ id, name, Posts }: any): IAuthor {
     return {
-        id, name
+        id, name, Posts
     }
 }
 
